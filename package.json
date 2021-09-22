@@ -1,5 +1,5 @@
 {
-  "name": "flow-coverage-report",
+  "name": "@cumulusds/flow-coverage-report",
   "version": "0.8.0",
   "description": "Generate an HTML report of the flow coverage data",
   "main": "dist/lib/index.js",
@@ -13,7 +13,7 @@
     "assets/**/*"
   ],
   "engines": {
-    "node": ">=10.0.0",
+    "node": ">=12",
     "npm": ">=6.13.4"
   },
   "scripts": {

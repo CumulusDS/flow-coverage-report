@@ -12,3 +12,6 @@ flow-coverage/
 ## Various generated files
 npm-debug.log
 .dir-locals.el
+
+## IDE
+.idea/
