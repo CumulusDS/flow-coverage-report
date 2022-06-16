@@ -18,9 +18,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node ${{ matrix.node }}
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
       - name: Install NPM credentials
@@ -34,7 +34,7 @@ jobs:
       - name: Test
         run: npm run jest
       - name: Upload test coverage
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: test-coverage
           path: coverage/
@@ -46,9 +46,9 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Install Node 14
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 14
       - name: Install NPM credentials
@@ -61,19 +61,3 @@ jobs:
         run: npm run build
       - name: Publish
         run: npm publish
-  yarn:
-    name: Yarn Lock Changes
-    runs-on: ubuntu-20.04
-    timeout-minutes: 5
-    if: github.event_name == 'pull_request'
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Yarn Lock Changes
-        uses: Simek/yarn-lock-changes@main
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          collapsibleThreshold: '25'
-          failOnDowngrade: 'false'
-          path: 'yarn.lock'
-          updateComment: 'true'
