@@ -15,7 +15,7 @@ import type {FlowCoverageReportOptions} from '.';
 
 const baseSemanticAssets = ['themes', 'default', 'assets'];
 const assetsList: Array<string> = [
-  'jquery-3.1.0.min.js',
+  'jquery-3.7.1.min.js',
   'semantic.min.js',
   'semantic.min.css',
   'semantic-tablesort.js',
@@ -92,7 +92,7 @@ async function renderHTMLReport(opt/* : Object */)/* : Promise<void> */ {
             'flow-coverage-report.css'
           ].map(prefixAssets).map(toRelative),
           js: [
-            'jquery-3.1.0.min.js',
+            'jquery-3.7.1.min.js',
             'semantic.min.js',
             'semantic-tablesort.js',
             'index.js'
@@ -132,7 +132,7 @@ async function renderHTMLReport(opt/* : Object */)/* : Promise<void> */ {
             'codemirror-simplescrollbars-addon.css'
           ].map(prefixAssets).map(toRelative),
           js: [
-            'jquery-3.1.0.min.js',
+            'jquery-3.7.1.min.js',
             'semantic.min.js',
             'semantic-tablesort.js',
             'codemirror.js',
