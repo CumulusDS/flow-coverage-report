@@ -4,7 +4,7 @@ exports[`<FlowCoverageMeterBar /> 1`] = `
 <div
   className="row red"
   style={
-    Object {
+    {
       "height": 12,
       "padding": 0,
     }

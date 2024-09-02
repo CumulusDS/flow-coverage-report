@@ -100,7 +100,7 @@ exports[`<HTMLReportBodySourceFile /> 1`] = `
       <div
         className="column"
         style={
-          Object {
+          {
             "textAlign": "left",
           }
         }
@@ -192,7 +192,7 @@ exports[`<HTMLReportBodySourceFile /> 1`] = `
   <pre
     id="file-coverage-data"
     style={
-      Object {
+      {
         "display": "none",
       }
     }
