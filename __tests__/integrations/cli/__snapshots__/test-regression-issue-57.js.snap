@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Fixed #57 - NaN in text report 1`] = `
-Object {
-  "filteredStdout": Array [
+{
+  "filteredStdout": [
     "│ src/url.js │       flow │     0 % │    10 │       0 │ 10        │",
   ],
   "stderr": "Flow Coverage 0% is below the required threshold 80%
