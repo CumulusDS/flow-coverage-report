@@ -8,26 +8,26 @@ on:
   release:
     types: [released]
 env:
-  NODE_PUBLISH_INSTALL_VERSION: 14
+  NODE_PUBLISH_INSTALL_VERSION: 18
 jobs:
   unit:
     name: Unit
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        node: [14, 16, 18, 19]
+        node: [18, 19, 20, 22, 23]
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Node ${{ matrix.node }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
       - name: Install NPM credentials
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
         env:
-          NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_READ_ONLY }}
       - name: Install NPM Packages
         run: npm ci
       - name: Build
@@ -35,27 +35,27 @@ jobs:
       - name: Test
         run: npm run jest
       - name: Upload test coverage
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: test-coverage
+          name: test-coverage-${{ matrix.node }}
           path: coverage/
   publish:
     name: Publish
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: unit
     if: github.event_name == 'release'
     timeout-minutes: 10
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install Node ${{ env.NODE_PUBLISH_INSTALL_VERSION }}
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: ${{ env.NODE_PUBLISH_INSTALL_VERSION }}
       - name: Install NPM credentials
         run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
         env:
-          NPM_TOKEN: ${{ secrets.NODE_AUTH_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN_READ_ONLY }}
       - name: Install NPM Packages
         run: npm ci
       - name: Build
